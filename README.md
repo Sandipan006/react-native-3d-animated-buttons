@@ -36,13 +36,18 @@ A beautiful React Native animated button component with Duolingo-style 3D press 
 
 ## Installation
 
-Install the package along with its required dependencies:
-
 ```bash
-npm install react-native-3d-animated-buttons react-native-svg expo-haptics
+npm install react-native-3d-animated-buttons
 ```
 
-That's it! Everything you need in one command to create Duolingo-style interactive buttons.
+Both peers are optional:
+
+- `react-native-svg`: needed only for SVG icons (built-in, `customIconSvg`).
+- `expo-haptics`: needed only for haptic feedback.
+
+```bash
+npm install react-native-svg expo-haptics
+```
 
 ## 🚀 Quick Start
 
@@ -123,9 +128,11 @@ import { AnimatedButton } from 'react-native-3d-animated-buttons';
 | `style` | StyleProp<ViewStyle> | `{}` | Additional styles for button container |
 | `textStyle` | StyleProp<TextStyle> | `{}` | Additional styles for button text |
 | `disabled` | boolean | `false` | Whether button is disabled |
+| `haptics` | boolean | `true` | Set to `false` to turn off haptic feedback |
 | `hapticStyle` | HapticStyle | `'Heavy'` | Haptic feedback style: `'Light'`, `'Medium'`, `'Heavy'` |
 | `icon` | IconType | `null` | Built-in icon type: `'apple'`, `'google'`, `'phone'`, `'facebook'`, or `null` |
 | `customIcon` | IconComponent | `null` | Custom SVG icon component (highest priority) |
+| `iconSource` | ImageSourcePropType | `null` | PNG/JPG icon, e.g. `require('./icon.png')` or `{ uri }` (no `react-native-svg` needed) |
 | `customIconSvg` | string | `null` | Custom SVG icon as string markup |
 | `iconSize` | number | `24` | Icon size (width and height in pixels) |
 | `iconPosition` | IconPosition | `'left'` | Icon position: `'left'` or `'right'` (auto-swaps for RTL) |
@@ -237,7 +244,14 @@ import MyCustomIcon from './icons/MyCustomIcon';
   shadowColor="#E6C200"
 />
 
-// Method 3: Icon Priority (customIcon > customIconSvg > icon)
+// Method 3: PNG image
+<AnimatedButton
+  title="PNG Icon"
+  onPress={() => {}}
+  iconSource={require('./assets/my-icon.png')}
+/>
+
+// Method 4: Icon Priority (customIcon > iconSource > customIconSvg > icon)
 <AnimatedButton
   title="Priority Example"
   onPress={() => {}}
@@ -443,7 +457,7 @@ Respects user accessibility preferences by allowing animation disabling:
 
 ## Haptic Feedback
 
-The component uses Expo Haptics for tactile feedback. You can customize the intensity:
+The component uses `expo-haptics` when it is installed. Without it, the button works and stays silent. Turn haptics off with `haptics={false}`, or choose the intensity:
 
 - `'Light'` - Subtle feedback
 - `'Medium'` - Moderate feedback  
