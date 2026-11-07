@@ -8,14 +8,13 @@
   "react-native": "lib/index.js",
   "source": "src/index.ts",
   "sideEffects": false,
-
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "prepare": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pack:check": "npm pack"
+    "test": "jest",
+    "pack:check": "npm pack",
+    "typecheck": "tsc --noEmit"
   },
-
   "keywords": [
     "react-native",
     "button",
@@ -29,30 +28,37 @@
     "rtl",
     "mobile ui"
   ],
-
   "author": "Sandipan Bera",
   "license": "MIT",
-
   "peerDependencies": {
+    "expo-haptics": ">=12",
     "react": ">=18",
     "react-native": ">=0.72",
-    "react-native-svg": ">=12 <17",
-    "expo-haptics": ">=12"
+    "react-native-svg": ">=12 <17"
   },
   "peerDependenciesMeta": {
-    "expo-haptics": { "optional": true }
+    "expo-haptics": {
+      "optional": true
+    },
+    "react-native-svg": {
+      "optional": true
+    }
   },
-
   "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/react": "^18.3.31",
+    "@types/react-test-renderer": "^18.3.2",
+    "expo": "~50.0.0",
+    "expo-haptics": "^13.0.1",
+    "jest": "^29.7.0",
+    "jest-expo": "~50.0.4",
     "react": "^18.2.0",
     "react-native": "^0.73.0",
-    "react-native-svg": "^15.8.0",
-    "expo-haptics": "^13.0.1",
-    "typescript": "^5.6.3",
-    "@types/react": "^18.2.0",
-    "@types/react-native": "^0.73.0"
+    "react-native-svg": "^15.16.1",
+    "react-test-renderer": "^18.2.0",
+    "tsc-alias": "^1.9.10",
+    "typescript": "^5.9.3"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sandipan006/react-native-3d-animated-buttons.git"
@@ -61,9 +67,26 @@
     "url": "https://github.com/Sandipan006/react-native-3d-animated-buttons/issues"
   },
   "homepage": "https://github.com/Sandipan006/react-native-3d-animated-buttons#readme",
-
-  "files": ["lib", "README.md", "LICENSE"],
-
-  "engines": { "node": ">=18.0.0" },
-  "publishConfig": { "access": "public" }
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/lib/",
+      "/test-app/"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    }
+  }
 }

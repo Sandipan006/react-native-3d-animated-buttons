@@ -71,6 +71,8 @@ coverage/
 test-app/node_modules/
 test-app/.expo/
 test-app/dist/
+test-app/ios/
+test-app/android/
 
 # Temporary files
 tmp/
