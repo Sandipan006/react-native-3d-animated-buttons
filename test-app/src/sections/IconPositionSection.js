@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import AnimatedButton from '../components/AnimatedButton';
+import { AnimatedButton } from 'react-native-3d-animated-buttons';
 import { globalStyles } from '../constants/styles';
 import { arrowLeftV1, arrowRightV1 } from '../constants/icons';
 

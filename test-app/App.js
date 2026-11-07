@@ -12,6 +12,7 @@ import LoadingStatesSection from './src/sections/LoadingStatesSection';
 import SideBySideSection from './src/sections/SideBySideSection';
 import IconPositionSection from './src/sections/IconPositionSection';
 import FontCustomizationSection from './src/sections/FontCustomizationSection';
+import V11FixesSection from './src/sections/V11FixesSection';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +38,7 @@ export default function App() {
         </View>
 
         {/* Demo Sections */}
+        <V11FixesSection onPress={handlePress} />
         <BasicButtonsSection onPress={handlePress} />
         <SocialIconsSection onPress={handlePress} />
         <IconDemoSection onPress={handlePress} />
